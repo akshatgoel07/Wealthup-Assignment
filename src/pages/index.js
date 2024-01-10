@@ -13,7 +13,7 @@ export default function Home() {
 	const [error, setError] = useState('');
 	const generateCode = async () => {
 		try {
-		  const response = await fetch('http://localhost:8000/api/codes');
+		  const response = await fetch('https://wealthup-assignment-production.up.railway.app/api/codes');
 		  const data = await response.json();
 		  setGeneratedCode(data.code);
 		  setMessage('');
@@ -25,7 +25,7 @@ export default function Home() {
 	
 	  const submitCode = async () => {
 		try {
-		  const response = await fetch('http://localhost:8000/api/codes/use', {
+		  const response = await fetch('https://wealthup-assignment-production.up.railway.app/api/codes/use', {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
