@@ -27,7 +27,8 @@ class CodeService {
         } else {
             existingCode.used = true;
             await existingCode.save();
-            res.json({ message: "Code is correct", status: true });
+            // res.json({ message: "Code is correct", status: true });
+            return { message: "Code is correct", status: true };
         }
     };
 

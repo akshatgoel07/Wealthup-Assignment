@@ -143,7 +143,8 @@ export default function Home() {
           value={enteredCode}
           onChange={(e) => setEnteredCode(e.target.value)}
         />
-        <button onClick={submitCode}>Submit</button>
+        <button
+		 onClick={submitCode}>Submit</button>
       </div>
 
       {message && <p style={{ color: 'green' }}>{message}</p>}
