@@ -128,7 +128,7 @@ a {
 
 .wave {
   position: absolute;
-  top: 610px;
+  top: 600px;
   left: 0;
   width: 100%;
   height: auto;
@@ -176,4 +176,7 @@ a {
 .container3-button{
   z-index: 2;
   margin-top: 50px;
+}
+.captcha{
+  margin-top: 145px;  
 }

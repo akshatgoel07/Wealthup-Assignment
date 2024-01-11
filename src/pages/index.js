@@ -7,44 +7,48 @@ import mockup from "../../public/mobile-mockup.png";
 import wave from "../../public/wave.svg";
 import steps from "../../public/howItWorks.png";
 export default function Home() {
-	const [generatedCode, setGeneratedCode] = useState('');
-	const [enteredCode, setEnteredCode] = useState('');
-	const [message, setMessage] = useState('');
-	const [error, setError] = useState('');
+	const [generatedCode, setGeneratedCode] = useState("");
+	const [enteredCode, setEnteredCode] = useState("");
+	const [message, setMessage] = useState("");
+	const [error, setError] = useState("");
 	const generateCode = async () => {
 		try {
-		  const response = await fetch('https://wealthup-assignment-production.up.railway.app/api/codes');
-		  const data = await response.json();
-		  setGeneratedCode(data.code);
-		  setMessage('');
-		  setError('');
+			const response = await fetch(
+				"https://wealthup-assignment-production.up.railway.app/api/codes",
+			);
+			const data = await response.json();
+			setGeneratedCode(data.code);
+			setMessage("");
+			setError("");
 		} catch (error) {
-		  setError('Error generating code');
+			setError("Error generating code");
 		}
-	  };
-	
-	  const submitCode = async () => {
+	};
+
+	const submitCode = async () => {
 		try {
-		  const response = await fetch('https://wealthup-assignment-production.up.railway.app/api/codes/use', {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json',
-			},
-			
-			body: JSON.stringify({ code: enteredCode }),
-		  });
-	
-		  const data = await response.json();
-		  if(data.success){
-			setMessage(data.message);
-		  }
-		  else{
-			  setError(data.message);
-		  }
+			const response = await fetch(
+				"https://wealthup-assignment-production.up.railway.app/api/codes/use",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+
+					body: JSON.stringify({ code: enteredCode }),
+				},
+			);
+
+			const data = await response.json();
+			if (data.success) {
+				setMessage(data.message);
+			} else {
+				setError(data.message);
+			}
 		} catch (error) {
-		  console.error(error)
+			console.error(error);
 		}
-	  };
+	};
 	return (
 		<>
 			<Head>
@@ -104,9 +108,9 @@ export default function Home() {
 					</div>
 					<div className="container3">
 						<div className="container3-heading">How it works?</div>
-						{/* <div className="wave">
+						<div className="wave">
 							<Image src={wave} />
-						</div> */}
+						</div>
 						<div className="container3-steps">
 							<Image className="steps-img" src={steps} />
 						</div>
@@ -131,25 +135,25 @@ export default function Home() {
 						</div>
 					</div>
 					<div>
-      <div>
-        <p>Generated Code: {generatedCode}</p>
-        <button onClick={generateCode}>Refresh</button>
-      </div>
+						<div className="captcha">
+							<h1></h1>
+							<p>Generated Code: {generatedCode}</p>
+							<button onClick={generateCode}>Refresh</button>
+						</div>
 
-      <div>
-        <input
-          type="text"
-          placeholder="Enter code"
-          value={enteredCode}
-          onChange={(e) => setEnteredCode(e.target.value)}
-        />
-        <button
-		 onClick={submitCode}>Submit</button>
-      </div>
+						<div>
+							<input
+								type="text"
+								placeholder="Enter code"
+								value={enteredCode}
+								onChange={(e) => setEnteredCode(e.target.value)}
+							/>
+							<button onClick={submitCode}>Submit</button>
+						</div>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+						{message && <p style={{ color: "green" }}>{message}</p>}
+						{error && <p style={{ color: "red" }}>{error}</p>}
+					</div>
 				</div>
 			</main>
 		</>
